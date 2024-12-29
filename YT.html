@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #download-section {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>YouTube Video Downloader For Navodit</h1>
+    <input type="text" id="videoURL" placeholder="Navodit Ji Past YT Video URL Here" style="width: 50%; padding: 10px;">
+    <button onclick="processURL()">Search</button>
+
+    <div id="download-section">
+        <p>Achha Kai Le Download Eha Click Kai Ke!</p>
+        <a id="downloadLink" href="" target="_blank">
+            <button>Download Video</button>
+        </a>
+    </div>
+
+    <script>
+        function processURL() {
+            const videoURL = document.getElementById('videoURL').value.trim();
+            const downloadSection = document.getElementById('download-section');
+            const downloadLink = document.getElementById('downloadLink');
+
+            // Updated pattern to handle all YouTube link formats (including query parameters)
+            const youtubePattern = /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+            const match = videoURL.match(youtubePattern);
+
+            if (match && match[4]) {
+                const videoID = match[4]; // Extract the 11-character video ID
+                downloadSection.style.display = 'block';
+                downloadLink.href = `https://y2mate.com/youtube/${videoID}`; // Placeholder for a download link
+            } else {
+                alert("Please enter a valid YouTube URL.");
+                downloadSection.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
